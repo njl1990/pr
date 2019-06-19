@@ -2,6 +2,7 @@
 mkdir -p /usr/local/pr
 
 echo copy files...
+cp -r ./web /usr/local/pr/web
 
 echo startup...
 
