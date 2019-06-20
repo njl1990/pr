@@ -82,18 +82,21 @@
 									<thead>
 										<tr>
 											<th class="center">NodeName</th>
-											<th class="center">NAT IP</th>
-											<th class="center">Last hear-beat time</th>
+											<th class="center">NAT URL</th>
+											<th class="center">LB</th>
 										</tr>
 									</thead>
 									<tbody>
 										<tr>
 											{% for item in HeartBeatList %}
 											<td class="center">
-												<a href="./overview?Date={{item.date}}"></a>
+												{{item.host}}
 											</td>
 											<td class="center">
-												
+												{{item.naturl}}
+											</td>
+											<td class="center">
+												{{item.timestr}}
 											</td>
 											{% endfor %}
 										</tr>

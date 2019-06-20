@@ -9,8 +9,8 @@ import time
 
 def Index(request):
     HeartBeatList=[]
-    mongoClient = MongoClient('39.104.57.12',27017)
-    #mongoClient = MongoClient('db',27017)
+    #mongoClient = MongoClient('39.104.57.12',27017)
+    mongoClient = MongoClient('db',27017)
     DBClient = mongoClient['prdb']
     collection = DBClient['tHeartBeat']
     result=collection.find({})
@@ -24,8 +24,8 @@ def Index(request):
 ## Load
 def GetHeartBeat(request):
     HeartBeatList=[]
-    mongoClient = MongoClient('39.104.57.12',27017)
-    #mongoClient = MongoClient('db',27017)
+    #mongoClient = MongoClient('39.104.57.12',27017)
+    mongoClient = MongoClient('db',27017)
     DBClient = mongoClient['prdb']
     collection = DBClient['tHeartBeat']
     result=collection.find({})
@@ -36,16 +36,16 @@ def GetHeartBeat(request):
     return HttpResponse(json_util.dumps(context))
 
 def HeartBeat(request):
-    host=request.POST['host']
-    naturl=request.POST['naturl']
+    host=request.GET['host']
+    naturl=request.GET['naturl']
     timestr=time.strftime("%Y-%m-%d %H:%M:%S", time.localtime())
     HeartBeatData={
         'host':host,
         'timestr':timestr,
         'naturl':naturl,
     }
-    mongoClient = MongoClient('39.104.57.12',27017)
-    #mongoClient = MongoClient('db',27017)
+    #mongoClient = MongoClient('39.104.57.12',27017)
+    mongoClient = MongoClient('db',27017)
     DBClient = mongoClient['prdb']
     collection = DBClient['tHeartBeat']
     # Save or Update to DB
