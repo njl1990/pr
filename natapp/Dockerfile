@@ -7,4 +7,6 @@ RUN ["mv","natapp","/usr/local/natapp/natapp"]
 RUN ["chmod","777","/usr/local/natapp/natapp"]
 RUN ["rm","natapp_linux_amd64_2_3_9.zip"]
 RUN ["mkdir","-p","/var/logs/natapp/"]
+ADD grepport.sh /grepport.sh
+RUN ["chmod","777","/grepport.sh"]
 
