@@ -10,3 +10,7 @@ import time
 def Index(request):
     context = {'context':'context'}
     return render(request, 'Olympic.html', context)
+
+def HsytYY1(request):
+    context = {'context':'context'}
+    return render(request, 'hstr-yy1.html', context)
