@@ -6,7 +6,7 @@ urlpatterns = [
 	path('hstr-yy1', views.HsytYY1, name='HsytYY1'),
 	path('index.html', views.Index, name='Index'),
 # API
-	## Load 
-	#path('GetHeartBeat', views.GetHeartBeat, name='GetHeartBeat'),
+	#Load 
+	path('LoadPreData', views.LoadPreData, name='LoadPreData'),
 	#path('HeartBeat', views.HeartBeat, name='HeartBeat'),
 ]
