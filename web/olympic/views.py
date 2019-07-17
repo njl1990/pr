@@ -14,6 +14,10 @@ def Index(request):
 def HsytYY1(request):
     context = {'context':'context'}
     return render(request, 'hstr-yy1.html', context)
+	
+def HsytNY1(request):
+    context = {'context':'context'}
+    return render(request, 'hstr-nongyao1.html', context)
 
 def LoadPreData(request):
 	mongoClient = MongoClient('pr.db',27017)
@@ -33,6 +37,40 @@ def LoadPreData(request):
 			context['datetime']=item['value']
 		if item['key'] == 'content':
 			context['content']=item['value']
-		if item['key'] == 'lcoation':
-			context['lcoation']=item['value']
+		if item['key'] == 'location':
+			context['location']=item['value']
 	return HttpResponse(json_util.dumps(context))
+
+def LoadReply(request):
+	title=request.POST['title']
+	mongoClient = MongoClient('pr.db',27017)
+	DBClient = mongoClient['olympicdb']
+	collection = DBClient['replydata']
+	result=collection.find({'title':title})
+	ReplyList=[]
+	for item in result:
+		ReplyList.append(item)
+	print(ReplyList)
+
+	context = {'ReplyList':json_util.dumps(ReplyList)}
+	return HttpResponse(context)
+
+def Reply(request):
+
+	print("ok")
+	user=request.POST['username']
+	text=request.POST['text']
+	title=request.POST['title']
+
+	replyObj={
+		'user':user,
+		'text':text,
+		'title':title,
+	}
+
+	mongoClient = MongoClient('pr.db',27017)
+	DBClient = mongoClient['olympicdb']
+	collection = DBClient['replydata']
+	result=conf.insert(replyObj)
+	print(result)
+	return HttpResponse("ok")
